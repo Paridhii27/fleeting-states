@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleeting States</title>
+    <script>
+        // Function to handle checkbox changes
+        function toggleGate(qubit, gate, isChecked) {
+            const endpoint = isChecked ? '/add-gate' : '/remove-gate';
+            const url = `${endpoint}?qubit=${qubit}&gate=${gate}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Fleeting States</h1>
+    <div>
+        <h2>Qubit 1</h2>
+        <label>
+            <input type="checkbox" onchange="toggleGate(1, 'Hadamard', this.checked)" />
+            Hadamard
+        </label>
+        <label>
+            <input type="checkbox" onchange="toggleGate(1, 'X', this.checked)" />
+            X
+        </label>
+        <label>
+            <input type="checkbox" onchange="toggleGate(1, 'Y', this.checked)" />
+            Y
+        </label>
+    </div>
+    <div>
+        <h2>Qubit 2</h2>
+        <label>
+            <input type="checkbox" onchange="toggleGate(2, 'Hadamard', this.checked)" />
+            Hadamard
+        </label>
+        <label>
+            <input type="checkbox" onchange="toggleGate(2, 'Z', this.checked)" />
+            Z
+        </label>
+        <label>
+            <input type="checkbox" onchange="toggleGate(2, 'CX', this.checked)" />
+            CX
+        </label>
+    </div>
+    <div>
+        <h2>Qubit 3</h2>
+        <label>
+            <input type="checkbox" onchange="toggleGate(3, 'X', this.checked)" />
+            X
+        </label>
+        <label>
+            <input type="checkbox" onchange="toggleGate(3, 'Y', this.checked)" />
+            Y
+        </label>
+        <label>
+            <input type="checkbox" onchange="toggleGate(3, 'Z', this.checked)" />
+            Z
+        </label>
+    </div>
+</body>
+</html>
