@@ -47,7 +47,7 @@ app.get('/add-gate', (req, res) => {
             gates[qubit].push(gate);
 
             // Send an OSC message for the added gate
-            sendOscMessage(`/qubit/${qubit}/add`, [gate]);
+            sendOscMessage(`/qubit/${qubit}/add`, [[gate],[qubit],[1]],);
 
             res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
         } else {
@@ -69,7 +69,7 @@ app.get('/remove-gate', (req, res) => {
             gates[qubit].splice(index, 1); // Remove the gate
 
             // Send an OSC message for the removed gate
-            sendOscMessage(`/qubit/${qubit}/remove`, [gate]);
+            sendOscMessage(`/qubit/${qubit}/remove`, [gate,qubit,0]);
 
             res.json({ message: `Gate ${gate} removed from Qubit ${qubit}` });
         } else {
