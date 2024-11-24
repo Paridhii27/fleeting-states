@@ -24,7 +24,7 @@ const udpPort = new osc.UDPPort({
 // Open the UDP port
 udpPort.open();
 
-// Serve fleetingstates.html when the root URL is accessed
+// Serve the HTML file
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'fleetingstates.html'));
 });
@@ -39,7 +39,7 @@ function sendOscMessage(address, args) {
 
 // Add a gate to a qubit
 app.get('/add-gate', (req, res) => {
-    const qubit = req.query.qubit;
+    const qubit = parseInt(req.query.qubit, 10);
     const gate = req.query.gate;
 
     if (gates[qubit]) {
@@ -47,7 +47,7 @@ app.get('/add-gate', (req, res) => {
             gates[qubit].push(gate);
 
             // Send an OSC message for the added gate
-            sendOscMessage(`/qubit/${qubit}/add`, [[gate],[qubit],[1]],);
+            sendOscMessage(`/qubit/${qubit}/add`, [gate,'Qubit'+qubit, 1]);
 
             res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
         } else {
@@ -60,7 +60,7 @@ app.get('/add-gate', (req, res) => {
 
 // Remove a gate from a qubit
 app.get('/remove-gate', (req, res) => {
-    const qubit = req.query.qubit;
+    const qubit = parseInt(req.query.qubit, 10);
     const gate = req.query.gate;
 
     if (gates[qubit]) {
@@ -69,7 +69,7 @@ app.get('/remove-gate', (req, res) => {
             gates[qubit].splice(index, 1); // Remove the gate
 
             // Send an OSC message for the removed gate
-            sendOscMessage(`/qubit/${qubit}/remove`, [gate,qubit,0]);
+            sendOscMessage(`/qubit/${qubit}/remove`, [gate, 'Qubit'+qubit, 0]);
 
             res.json({ message: `Gate ${gate} removed from Qubit ${qubit}` });
         } else {
@@ -79,6 +79,49 @@ app.get('/remove-gate', (req, res) => {
         res.status(400).json({ message: "Invalid Qubit" });
     }
 });
+
+app.get('/add-cnot', (req, res) => {
+    const qubit1 = parseInt(req.query.qubit1, 10);
+    const qubit2 = parseInt(req.query.qubit2, 10);
+    const gate = req.query.gate;
+
+    // Ensure the qubits are valid
+    if (gates[qubit1] && gates[qubit2]) {
+        // Push the gate to both qubits' gate lists
+        gates[qubit1].push(gate);
+        gates[qubit2].push(gate);
+
+        // Send a single OSC message for the pair
+        sendOscMessage('/add-cnot', [gate, `Qubit${qubit1}`, `Qubit${qubit2}`, 1.0]);
+
+        res.json({ message: `Gate ${gate} added to Qubits ${qubit1} and ${qubit2}` });
+    } else {
+        res.status(400).json({ message: "Invalid Qubits" });
+    }
+});
+
+app.get('/remove-cnot', (req, res) => {
+    const qubit1 = parseInt(req.query.qubit1, 10);
+    const qubit2 = parseInt(req.query.qubit2, 10);
+    const gate = req.query.gate;
+
+    // Ensure the qubits are valid
+    if (gates[qubit1] && gates[qubit2]) {
+        // Remove the gate from both qubits' gate lists
+        gates[qubit1] = gates[qubit1].filter(existingGate => existingGate !== gate);
+        gates[qubit2] = gates[qubit2].filter(existingGate => existingGate !== gate);
+
+        // Send a single OSC message for the removal
+        sendOscMessage('/remove-cnot', [gate, `Qubit${qubit1}`, `Qubit${qubit2}`, 0.0]);
+
+        res.json({ message: `Gate ${gate} removed from Qubits ${qubit1} and ${qubit2}` });
+    } else {
+        res.status(400).json({ message: "Invalid Qubits" });
+    }
+});
+
+
+
 
 // Start the server
 app.listen(PORT, () => {
