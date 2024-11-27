@@ -1,8 +1,7 @@
 // Adding quibit images for their initial state
-document.getElementById("quibitOne").src = "./public/assets/images/quibit1.png";
-document.getElementById("quibitTwo").src = "./public/assets/images/quibit2.png";
-document.getElementById("quibitThree").src =
-  "./public/assets/images/quibit3.png";
+document.getElementById("quibitOne").src = "/assets/images/quibit1.png";
+document.getElementById("quibitTwo").src = "/assets/images/quibit2.png";
+document.getElementById("quibitThree").src = "/assets/images/quibit3.png";
 
 // Adding the three quantum gates
 document.getElementById("hadamard").src =
