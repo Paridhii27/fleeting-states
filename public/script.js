@@ -4,11 +4,9 @@ document.getElementById("quibitTwo").src = "/assets/images/quibit2.png";
 document.getElementById("quibitThree").src = "/assets/images/quibit3.png";
 
 // Adding the three quantum gates
-document.getElementById("hadamard").src =
-  "./public/assets/images/hadamard2.png";
-document.getElementById("rotation").src =
-  "./public/assets/images/rotation2.png";
-document.getElementById("cnot").src = "./public/assets/images/cnot2.png";
+document.getElementById("hadamard").src = "/assets/images/hadamard2.png";
+document.getElementById("rotation").src = "/assets/images/rotation2.png";
+document.getElementById("cnot").src = "/assets/images/cnot2.png";
 
 // Creating draggable gates for the quantum network
 var dragItems = document.querySelectorAll(".dragElement");
@@ -69,12 +67,9 @@ dropZoneSet.forEach((dropZone) => {
 
   dropZone.addEventListener("dragleave", () => {
     // dropZone.classList.remove("hoverOver");
-    document.getElementById("quibitOne").src =
-      "./public/assets/images/quibit1.png";
-    document.getElementById("quibitTwo").src =
-      "./public/assets/images/quibit2.png";
-    document.getElementById("quibitThree").src =
-      "./public/assets/images/quibit3.png";
+    document.getElementById("quibitOne").src = "/assets/images/quibit1.png";
+    document.getElementById("quibitTwo").src = "/assets/images/quibit2.png";
+    document.getElementById("quibitThree").src = "/assets/images/quibit3.png";
   });
 
   dropZone.addEventListener("drop", (e) => {
@@ -88,15 +83,15 @@ dropZoneSet.forEach((dropZone) => {
 
     if (e.target.id == "quibitOne") {
       document.getElementById("quibitOne").src =
-        "./public/assets/images/quibit1Hover.png";
+        "/assets/images/quibit1Hover.png";
       toggleHadamard(1, gateSelected, "/add-gate");
     } else if (e.target.id == "quibitTwo") {
       document.getElementById("quibitTwo").src =
-        "./public/assets/images/quibit2Hover.png";
+        "/assets/images/quibit2Hover.png";
       toggleHadamard(2, gateSelected, "/add-gate");
     } else if (e.target.id == "quibitThree") {
       document.getElementById("quibitThree").src =
-        "./public/assets/images/quibit3Hover.png";
+        "/assets/images/quibit3Hover.png";
       toggleHadamard(3, gateSelected, "/add-gate");
     }
   });
