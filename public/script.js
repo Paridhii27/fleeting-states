@@ -67,9 +67,9 @@ dropZoneSet.forEach((dropZone) => {
 
   dropZone.addEventListener("dragleave", () => {
     // dropZone.classList.remove("hoverOver");
-    document.getElementById("quibitOne").src = "/assets/images/quibit1.png";
-    document.getElementById("quibitTwo").src = "/assets/images/quibit2.png";
-    document.getElementById("quibitThree").src = "/assets/images/quibit3.png";
+    document.getElementById("quibitOne").src = "./assets/images/quibit1.png";
+    document.getElementById("quibitTwo").src = "./assets/images/quibit2.png";
+    document.getElementById("quibitThree").src = "./assets/images/quibit3.png";
   });
 
   dropZone.addEventListener("drop", (e) => {
@@ -83,15 +83,15 @@ dropZoneSet.forEach((dropZone) => {
 
     if (e.target.id == "quibitOne") {
       document.getElementById("quibitOne").src =
-        "/assets/images/quibit1Hover.png";
+        "./assets/images/quibit1Hover.png";
       toggleHadamard(1, gateSelected, "/add-gate");
     } else if (e.target.id == "quibitTwo") {
       document.getElementById("quibitTwo").src =
-        "/assets/images/quibit2Hover.png";
+        "./assets/images/quibit2Hover.png";
       toggleHadamard(2, gateSelected, "/add-gate");
     } else if (e.target.id == "quibitThree") {
       document.getElementById("quibitThree").src =
-        "/assets/images/quibit3Hover.png";
+        "./assets/images/quibit3Hover.png";
       toggleHadamard(3, gateSelected, "/add-gate");
     }
   });
