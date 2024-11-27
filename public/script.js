@@ -13,6 +13,7 @@ var dragItems = document.querySelectorAll(".dragElement");
 var dropZoneSet = Array.from(document.querySelectorAll(".dropZone"));
 
 let originalParent, originalIndex;
+let gateSelected;
 
 function drag(event) {
   // Storing the ID of the dragged gate
@@ -27,6 +28,20 @@ dragItems.forEach((gate) => {
     e.dataTransfer.setData("text/plain", e.target.id);
     document.getElementById("draggedGate").innerHTML =
       e.dataTransfer.getData("text/plain");
+    if (e.dataTransfer.getData("text/plain") == "hadamard") {
+      gateSelected = "hadamard";
+      document.getElementById("errorCheck").innerHTML = "Added Hadamard";
+      toggleHadamard(1, "Hadamard", "/add-gate");
+    } else if (e.dataTransfer.getData("text/plain") == "rotation") {
+      gateSelected = "rotation";
+      document.getElementById("errorCheck").innerHTML = "Added Rotation";
+      toggleHadamard(2, "rotation", "/add-gate");
+    } else if (e.dataTransfer.getData("text/plain") == "cnot") {
+      gateSelected = "cnot";
+      document.getElementById("errorCheck").innerHTML = "Added CNOT";
+      toggleHadamard(3, "cnot", "/add-gate");
+    }
+
     // if (e.dataTransfer.getData("text/plain") == "hadamard"){
     //   document.getElementById("gate-description").innerHTML = "Hadamard Gate creates superposition in a qubit by turning into an equal mix of 0 and 1, and 1 into a similar combination with a phase difference. This gives equal chances of measuring 0 or 1."
     // }else if (e.dataTransfer.getData("text/plain") == "rotation"){
@@ -48,30 +63,6 @@ dropZoneSet.forEach((dropZone) => {
     e.preventDefault();
     document.getElementById("testing").innerHTML = e.target.id;
     // dropZone.classList.add("hoverOver");
-    if (e.target.id == "quibitOne") {
-      if (e.dataTransfer.getData("text/plain") == "hadamard") {
-        toggleHadamard(1, "Hadamard", "/add-gate");
-      }
-      // else if (e.dataTransfer.getData("text/plain") == "rotation") {
-      //   toggleHadamard(1, "Hadamard", 1);
-      // } else if (e.dataTransfer.getData("text/plain") == "cnot") {
-      //   toggleHadamard(1, "Hadamard", 1);
-      // }
-      document.getElementById("quibitOne").src =
-        "./assets/images/quibit1Hover.png";
-    } else if (e.target.id == "quibitTwo") {
-      if (e.dataTransfer.getData("text/plain") == "hadamard") {
-        toggleHadamard(2, "Hadamard", "/add-gate");
-      }
-      document.getElementById("quibitTwo").src =
-        "./assets/images/quibit2Hover.png";
-    } else if (e.target.id == "quibitThree") {
-      if (e.dataTransfer.getData("text/plain") == "hadamard") {
-        toggleHadamard(3, "Hadamard", "/add-gate");
-      }
-      document.getElementById("quibitThree").src =
-        "./assets/images/quibit3Hover.png";
-    }
   });
 
   dropZone.addEventListener("dragleave", () => {
@@ -89,73 +80,22 @@ dropZoneSet.forEach((dropZone) => {
     dropZone.appendChild(draggedElement);
     draggedElement.style.position = "relative";
     draggedElement.style.zIndex = "10";
+
+    if (e.target.id == "quibitOne") {
+      document.getElementById("quibitOne").src =
+        "./assets/images/quibit1Hover.png";
+      toggleHadamard(1, gateSelected, "/add-gate");
+    } else if (e.target.id == "quibitTwo") {
+      document.getElementById("quibitTwo").src =
+        "./assets/images/quibit2Hover.png";
+      toggleHadamard(2, gateSelected, "/add-gate");
+    } else if (e.target.id == "quibitThree") {
+      document.getElementById("quibitThree").src =
+        "./assets/images/quibit3Hover.png";
+      toggleHadamard(3, gateSelected, "/add-gate");
+    }
   });
 });
-
-// dropZoneSet.forEach((dropZone) => {
-//   const gateDrag = dropZone.querySelector(".dragElement");
-//   dropZone.addEventListener("dragover", (e) => {
-//     e.preventDefault();
-//     dropZone.classList.add("hoverOver");
-//     if (gateDrag) {
-//       imageElement.src = "./assets/images/quibit2Hover.png"; // New image path
-//     }
-//     // dropZone.style.backgroundImage = "url('./assets/images/quibit2Hover.png')";
-//   });
-
-//   dropZone.addEventListener("drop", (e) => {
-//     e.preventDefault();
-//     dropZone.classList.remove("hoverOver");
-
-//     // Append the dragged item to the drop zone and ensure visibility
-//     dropZone.appendChild(dragItem);
-//     dragItem.style.position = "relative"; // Ensure proper positioning
-//     dragItem.style.zIndex = "10"; // Make it appear on top
-//   });
-// });
-
-// dragItem.addEventListener("dragstart", (e) => {
-//   // Clone the dragged element and append it to the original parent
-//   originalParent = dragItem.parentNode;
-//   originalIndex = Array.from(originalParent.children).indexOf(dragItem);
-//   let clone = dragItem.cloneNode(true);
-//   clone.classList.remove("beingDragged"); // Ensure the cloned element doesn't have the dragged class
-//   originalParent.insertBefore(clone, originalParent.children[originalIndex]);
-//   dragItem.parentNode.appendChild(clone);
-
-//   // Reattach event listeners to the clone
-//   addDragListeners(clone);
-// });
-
-// dragItem.addEventListener("drag", () => {
-//   dragItem.classList.add("beingDragged");
-// });
-
-// dragItem.addEventListener("dragend", () => {
-//   dragItem.classList.remove("beingDragged");
-// });
-
-// // When a gate is dragged and dropped on a quibit, attaching the drag element to another one of the same gate to add to another quibit.
-// dragItem.addEventListener("dragstart", (e) => {
-//   originalParent = dragItem.parentNode;
-//   originalIndex = Array.from(originalParent.children).indexOf(dragItem);
-
-//   // Optionally clone the dragged item if needed
-//   let clone = dragItem.cloneNode(true);
-//   clone.classList.remove("beingDragged");
-//   originalParent.insertBefore(clone, originalParent.children[originalIndex]);
-
-//   dragItem.style.opacity = "0.5"; // Visual feedback
-// });
-
-// dragItem.addEventListener("drag", () => {
-//   dragItem.classList.add("beingDragged");
-// });
-
-// dragItem.addEventListener("dragend", () => {
-//   dragItem.style.opacity = "1"; // Reset visual feedback
-//   dragItem.classList.remove("beingDragged");
-// });
 
 //Pressing measure button to bring up the pop ups
 measureBtn.addEventListener("click", function () {

@@ -4,6 +4,8 @@ const osc = require("osc");
 
 // Create an Express app
 const app = express();
+app.use(express.static("public"));
+
 const PORT = 3000;
 
 // Gate storage for each qubit
@@ -26,7 +28,7 @@ udpPort.open();
 
 // Serve the HTML file
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "fleetingstates.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Utility function to send OSC messages
