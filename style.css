@@ -1,0 +1,293 @@
+/* * {
+  border: 0.5px solid blue;
+  box-sizing: border-box;
+} */
+
+/* html {
+  height: 1194px;
+  width: 834px;
+} */
+
+@font-face {
+  font-family: spectral;
+  src: url(./assets/fonts/Spectral-Light.ttf);
+}
+
+@font-face {
+  font-family: spectral-italic;
+  src: url(./assets/fonts/Spectral-Italic.ttf);
+}
+
+@font-face {
+  font-family: martian-mono;
+  src: url(./assets/fonts/MartianMono-ExtraLight.ttf);
+}
+
+body {
+  background-color: #f5f5f5;
+  font-family: spectral;
+  margin: 2%;
+  width: 100vw;
+  height: 100vh;
+  /* overflow: hidden; */
+}
+
+h1 {
+  font-family: spectral;
+  color: #1a6dd9;
+}
+
+h2 {
+  font-family: spectral;
+  font-size: 24;
+}
+
+p {
+  font-family: martian-mono;
+}
+
+.underline {
+  text-decoration: underline;
+  color: #1a6dd9;
+}
+
+button {
+  cursor: pointer;
+  font-family: martian-mono;
+  font-size: 18px;
+  background-color: white;
+  color: #1a6dd9;
+  border-color: #1a6dd9;
+  box-shadow: 10px 5px 5px #1a6dd9;
+  box-shadow: 10px 5px 5px #1a6dd9, 0 0 #9bb5d7;
+  outline: none;
+}
+
+.measured-values-interface {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.apply-gates-panel {
+  display: flex;
+  margin-top: 5%;
+  width: 15%;
+  justify-items: end;
+  flex-direction: column;
+  padding: 2%;
+  z-index: 9;
+}
+
+.apply-gates-panel img {
+  width: 90%;
+  height: auto;
+  align-items: flex-end;
+}
+
+#hadamard {
+  cursor: move;
+  z-index: 10;
+  margin-bottom: 10%;
+  box-shadow: 2px 1px 1px #98b7e0;
+}
+
+#rotation {
+  cursor: move;
+  z-index: 10;
+  margin-bottom: 10%;
+  box-shadow: 2px 1px 1px #98b7e0;
+}
+
+#cnot {
+  cursor: move;
+  z-index: 10;
+  margin-bottom: 10%;
+  box-shadow: 2px 1px 1px #98b7e0;
+}
+
+.quibit-network {
+  position: relative;
+  display: flex;
+  width: 75%;
+  padding: 2%;
+  margin-right: 2%;
+  background-image: url("./assets/images/Grids.png");
+  background-size: cover;
+  max-width: 70%;
+  max-height: 76%;
+}
+
+.quibits {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+#quibitOne {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  position: absolute;
+  width: 55%;
+  height: auto;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, 0);
+}
+
+#quibitTwo {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  height: auto;
+  left: 90%;
+  top: 20%;
+  transform: translate(5%, 0%);
+}
+
+#quibitThree {
+  position: absolute;
+  display: flex;
+  width: 60%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  left: 20%;
+  top: 60%;
+}
+
+/* .information-panel {
+  display: flex;
+  align-items: center;
+  z-index: 9;
+  justify-items: start;
+  width: 5%;
+  justify-content: space-around;
+  flex-direction: column;
+} */
+
+#measureBtn {
+  z-index: 10;
+  margin-top: 55%;
+  margin-left: 10%;
+}
+
+.measure-btn {
+  margin: 10% auto;
+  z-index: 10;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  width: 562px;
+  height: 474px;
+  overflow: auto;
+  margin: 20% auto;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  display: none;
+  transition: right 0.5s ease-in-out;
+}
+
+.popup-content {
+  background-color: #9aadd1;
+  padding: 5%;
+  border: 1px solid #888888;
+  width: 680px;
+  height: 420px;
+  overflow-y: auto;
+  /* overflow-x: none; */
+}
+
+.result-content {
+  background-color: #8fbf8a;
+  padding: 5%;
+  border: 1px solid #888888;
+  width: 680px;
+  height: 420px;
+  font-weight: bolder;
+}
+
+.popup-content button,
+.result-content button {
+  display: block;
+  margin: 0 auto;
+}
+
+.popup-controls {
+  display: flex;
+  flex-direction: row;
+}
+
+.show {
+  display: block;
+  right: 0;
+}
+
+.gate-info,
+.result-info {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  flex-direction: row;
+}
+
+.gate-diagram,
+.result-diagram {
+  width: 50%;
+}
+.gate-usage,
+.result-explanation {
+  width: 50%;
+}
+
+/* Dragging gates css */
+
+.dragElement,
+.dropZone {
+  width: 12rem;
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.dragElement {
+  z-index: 1000;
+}
+
+.dropZone {
+  width: 13rem;
+  height: 16rem;
+  border-radius: 10px;
+}
+
+.beingDragged {
+  color: white;
+  width: 500px;
+}
+
+.hoverOver {
+  transition: 0.3s ease-out;
+  border: solid 5px #2a9d8f;
+}
+
+@media (max-width: 800px) {
+  .dragElement {
+    width: 6rem;
+    height: 9rem;
+    font-size: 60%;
+  }
+  .dropZone {
+    width: 8rem;
+    height: 10rem;
+  }
+}

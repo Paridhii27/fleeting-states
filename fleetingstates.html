@@ -1,70 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Fleeting States</title>
-    <script>
-        // Function to handle checkbox changes
-        function toggleGate(qubit, gate, isChecked) {
-            const endpoint = isChecked ? '/add-gate' : '/remove-gate';
-            const url = `${endpoint}?qubit=${qubit}&gate=${gate}`;
+  </head>
+  <body>
+    <!-- <img src="./assets/images/title.png"> -->
+    <!-- <h1>
+      <span style="font-family: spectral-italic"> fleeting states </span> +
+      <span class="underline"> measured values </span>
+    </h1> -->
+    <div class="measured-values-interface">
+      <div class="apply-gates-panel">
+        <!-- Defining the quantum gates -->
+        <img
+        id="hadamard"
+        class="dragElement"
+        draggable="true"
+        ondragstart="drag(event)"
+      />
+      <img
+        id="rotation"
+        class="dragElement" 
+        draggable="true"
+        ondragstart="drag(event)"
+      />
+      <img
+        id="cnot"
+        class="dragElement" 
+        draggable="true"
+        ondragstart="drag(event)"
+      />
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data.message);
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-</head>
-<body>
-    <h1>Fleeting States</h1>
-    <div>
-        <h2>Qubit 1</h2>
-        <label>
-            <input type="checkbox" onchange="toggleGate(1, 'Hadamard', this.checked)" />
+          <p style="color:#1a6dd9; font-size: 20px;">Drag and Drop</p>
+          <p id="testing"></p>
+          <p id="draggedGate"></p>
+      </div>
+      
+      <div class="quibit-network">
+        <div class="quibits">
+          <!-- Define the three quibits  -->
+          <img id="quibitOne" class="dropZone"/>
+          <img id="quibitTwo" class="dropZone"/>
+          <img id="quibitThree" class="dropZone"/>
+        </div>
+        <!-- Define the measure button -->
+        <div class="measure-btn">
+          <button type="button" id="measureBtn">MEASURE</button>
+          <div id="measureScreen" class="popup">
+            <div class="popup-content">
+              <div class="gate-info">
+                <div class="gate-diagram">
+                  <img src="./assets/images/hadamardPopup.png" />
+                </div>
+                <div class="gate-usage">
+                  <h2 class="underline">Hadamard Gate</h2>
+                  <p>
+                    Hadamard Gate creates superposition in a qubit by turning
+                    into an equal mix of 0 and 1, and 1 into a similar
+                    combination with a phase difference. This gives equal
+                    chances of measuring 0 or 1.
+                  </p>
+                </div>
+              </div>
+              <div class="popup-controls">
+                <button type="button" id="closePopup">CANCEL</button>
+                <button type="button" id="quantumRes">PERFORM OPERATION</button>
+                <div id="resultScreen" class="popup">
+                  <div class="result-content">
+                    <div class="result-info">
+                      <div class="result-diagram">
+                        <img src="./assets/images/hadamardPopup.png" />
+                      </div>
+                      <div class="result-explanation">
+                        <h2 class="underline" style="color:#1FA113">success!</h2>
+                        <p>
+                          Hadamard Gate has successfully been applied! Q2 should now be superpositioned. If you perform a measurement cirquit on it now, it should have the value 0 in 50% of all measurements and the value 1 in the other half. 
+                        </p>
+                      </div>
+                    </div>
+                    <div class="popup-controls">
+                      <button type="button" id="closeRes" style="color:#1FA113">CANCEL</button>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+        <!-- <h2>Hadamard Gate</h2>
+        <div>
+            <label>
+                <input type="checkbox" onchange="toggleHadamard(1, 'Hadamard', this.checked)" />
+                Qubit 1
+            </label>
+            <label>
+                <input type="checkbox" onchange="toggleHadamard(2, 'Hadamard', this.checked)" />
+                Qubit 2
+            </label>
+            <label>
+                <input type="checkbox" onchange="toggleHadamard(3, 'Hadamard', this.checked)" />
+                Qubit 3
+            </label>
+        </div> -->
+    
+        <!-- CNOT Gate Section -->
+        <!-- <h2>CNOT Gate</h2>
+        <div>
+            <label>
+                <input type="checkbox" onchange="toggleCNOT(1,2, 'CNOT', this.checked)" />
+                Qubit 1 & 2
+            </label>
+            <label>
+                <input type="checkbox" onchange="toggleCNOT(2,3, 'CNOT', this.checked)" />
+                Qubit 2 & 3
+            </label>
+            <label>
+                <input type="checkbox" onchange="toggleCNOT(3,1, 'CNOT', this.checked)" />
+                Qubit 3 & 1
+            </label>
+        </div> -->
+
+        <!-- ------------------------------------- Archive ------------------------------------- -->
+
+        <!-- <div class="quibitOne">
+          <h2>Qubit 1</h2>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(1, 'Hadamard', this.checked)"
+            />
             Hadamard
-        </label>
-        <label>
-            <input type="checkbox" onchange="toggleGate(1, 'X', this.checked)" />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(1, 'X', this.checked)"
+            />
             X
-        </label>
-        <label>
-            <input type="checkbox" onchange="toggleGate(1, 'Y', this.checked)" />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(1, 'Y', this.checked)"
+            />
             Y
-        </label>
-    </div>
-    <div>
-        <h2>Qubit 2</h2>
-        <label>
-            <input type="checkbox" onchange="toggleGate(2, 'Hadamard', this.checked)" />
+          </label>
+        </div>
+        <div class="quibitTwo">
+          <h2>Qubit 2</h2>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(2, 'Hadamard', this.checked)"
+            />
             Hadamard
-        </label>
-        <label>
-            <input type="checkbox" onchange="toggleGate(2, 'Z', this.checked)" />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(2, 'Z', this.checked)"
+            />
             Z
-        </label>
-        <label>
-            <input type="checkbox" onchange="toggleGate(2, 'CX', this.checked)" />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(2, 'CX', this.checked)"
+            />
             CX
-        </label>
-    </div>
-    <div>
-        <h2>Qubit 3</h2>
-        <label>
-            <input type="checkbox" onchange="toggleGate(3, 'X', this.checked)" />
+          </label>
+        </div>
+        <div class="quibitThree">
+          <h2>Qubit 3</h2>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(3, 'X', this.checked)"
+            />
             X
-        </label>
-        <label>
-            <input type="checkbox" onchange="toggleGate(3, 'Y', this.checked)" />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(3, 'Y', this.checked)"
+            />
             Y
-        </label>
-        <label>
-            <input type="checkbox" onchange="toggleGate(3, 'Z', this.checked)" />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onchange="toggleGate(3, 'Z', this.checked)"
+            />
             Z
-        </label>
-    </div>
-</body>
+          </label>
+        </div> -->
+
+    <script src="./script.js"></script>
+  </body>
 </html>
