@@ -1,12 +1,12 @@
 // Adding quibit images for their initial state
-document.getElementById("quibitOne").src = "public/assets/images/quibit1.png";
-document.getElementById("quibitTwo").src = "public/assets/images/quibit2.png";
-document.getElementById("quibitThree").src = "public/assets/images/quibit3.png";
+document.getElementById("quibitOne").src = "./assets/images/quibit1.png";
+document.getElementById("quibitTwo").src = "./assets/images/quibit2.png";
+document.getElementById("quibitThree").src = "./assets/images/quibit3.png";
 
 // Adding the three quantum gates
-document.getElementById("hadamard").src = "public/assets/images/hadamard2.png";
-document.getElementById("rotation").src = "public/assets/images/rotation2.png";
-document.getElementById("cnot").src = "public/assets/images/cnot2.png";
+document.getElementById("hadamard").src = "./assets/images/hadamard2.png";
+document.getElementById("rotation").src = "./assets/images/rotation2.png";
+document.getElementById("cnot").src = "./assets/images/cnot2.png";
 
 // Creating draggable gates for the quantum network
 var dragItems = document.querySelectorAll(".dragElement");
