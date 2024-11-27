@@ -28,7 +28,7 @@ udpPort.open();
 
 // Serve the HTML file
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/interface.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Utility function to send OSC messages

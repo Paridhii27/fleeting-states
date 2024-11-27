@@ -10,17 +10,17 @@
 
 @font-face {
   font-family: spectral;
-  src: url(./assets/fonts/Spectral-Light.ttf);
+  src: url(../assets/fonts/Spectral-Light.ttf);
 }
 
 @font-face {
   font-family: spectral-italic;
-  src: url(./assets/fonts/Spectral-Italic.ttf);
+  src: url(../assets/fonts/Spectral-Italic.ttf);
 }
 
 @font-face {
   font-family: martian-mono;
-  src: url(./assets/fonts/MartianMono-ExtraLight.ttf);
+  src: url(../assets/fonts/MartianMono-ExtraLight.ttf);
 }
 
 body {
@@ -112,7 +112,7 @@ button {
   width: 60%;
   padding: 2%;
   margin-right: 2%;
-  background-image: url("./assets/images/Grids.png");
+  background-image: url("../assets/images/Grids.png");
   background-size: cover;
   max-width: 53%;
   max-height: 76%;
