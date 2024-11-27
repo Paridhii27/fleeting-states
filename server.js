@@ -4,7 +4,7 @@ const osc = require("osc");
 
 // Create an Express app
 const app = express();
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = 3000;
 
