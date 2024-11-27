@@ -27,6 +27,13 @@ dragItems.forEach((gate) => {
     e.dataTransfer.setData("text/plain", e.target.id);
     document.getElementById("draggedGate").innerHTML =
       e.dataTransfer.getData("text/plain");
+    // if (e.dataTransfer.getData("text/plain") == "hadamard"){
+    //   document.getElementById("gate-description").innerHTML = "Hadamard Gate creates superposition in a qubit by turning into an equal mix of 0 and 1, and 1 into a similar combination with a phase difference. This gives equal chances of measuring 0 or 1."
+    // }else if (e.dataTransfer.getData("text/plain") == "rotation"){
+
+    // }else if (e.dataTransfer.getData("text/plain") == "cnot"){
+
+    // }
     gate.classList.add("beingDragged");
   });
 
@@ -42,12 +49,26 @@ dropZoneSet.forEach((dropZone) => {
     document.getElementById("testing").innerHTML = e.target.id;
     // dropZone.classList.add("hoverOver");
     if (e.target.id == "quibitOne") {
+      if (e.dataTransfer.getData("text/plain") == "hadamard") {
+        toggleHadamard(1, "Hadamard", "/add-gate");
+      }
+      // else if (e.dataTransfer.getData("text/plain") == "rotation") {
+      //   toggleHadamard(1, "Hadamard", 1);
+      // } else if (e.dataTransfer.getData("text/plain") == "cnot") {
+      //   toggleHadamard(1, "Hadamard", 1);
+      // }
       document.getElementById("quibitOne").src =
         "./assets/images/quibit1Hover.png";
     } else if (e.target.id == "quibitTwo") {
+      if (e.dataTransfer.getData("text/plain") == "hadamard") {
+        toggleHadamard(2, "Hadamard", "/add-gate");
+      }
       document.getElementById("quibitTwo").src =
         "./assets/images/quibit2Hover.png";
     } else if (e.target.id == "quibitThree") {
+      if (e.dataTransfer.getData("text/plain") == "hadamard") {
+        toggleHadamard(3, "Hadamard", "/add-gate");
+      }
       document.getElementById("quibitThree").src =
         "./assets/images/quibit3Hover.png";
     }
@@ -163,8 +184,7 @@ window.addEventListener("click", function (event) {
 
 // Function to handle checkbox changes
 function toggleHadamard(qubit, gate, isChecked) {
-  const endpoint = isChecked ? "/add-gate" : "/remove-gate";
-  const url = `${endpoint}?qubit=${qubit}&gate=${gate}`;
+  const url = `${isChecked}?qubit=${qubit}&gate=${gate}`;
 
   fetch(url)
     .then((response) => response.json())

@@ -109,12 +109,12 @@ button {
 .quibit-network {
   position: relative;
   display: flex;
-  width: 75%;
+  width: 60%;
   padding: 2%;
   margin-right: 2%;
   background-image: url("./assets/images/Grids.png");
   background-size: cover;
-  max-width: 70%;
+  max-width: 53%;
   max-height: 76%;
 }
 
@@ -163,17 +163,20 @@ button {
   top: 60%;
 }
 
-/* .information-panel {
+.information-panel {
   display: flex;
   align-items: center;
   z-index: 9;
   justify-items: start;
-  width: 5%;
-  justify-content: space-around;
+  width: 20%;
+  max-height: 85%;
+  margin-right: 2%;
+  padding-right: 4%;
+  /* background-color: #2a9d8f; */
   flex-direction: column;
-} */
+}
 
-#measureBtn {
+/* #measureBtn {
   z-index: 10;
   margin-top: 55%;
   margin-left: 10%;
@@ -191,7 +194,6 @@ button {
   height: 474px;
   overflow: auto;
   margin: 20% auto;
-  /* background-color: rgba(0, 0, 0, 0.8); */
   display: none;
   transition: right 0.5s ease-in-out;
 }
@@ -203,7 +205,6 @@ button {
   width: 680px;
   height: 420px;
   overflow-y: auto;
-  /* overflow-x: none; */
 }
 
 .result-content {
@@ -246,7 +247,7 @@ button {
 .gate-usage,
 .result-explanation {
   width: 50%;
-}
+} */
 
 /* Dragging gates css */
 

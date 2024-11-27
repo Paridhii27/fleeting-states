@@ -15,6 +15,7 @@
     <div class="measured-values-interface">
       <div class="apply-gates-panel">
         <!-- Defining the quantum gates -->
+        <p style="color:#1a6dd9; font-size: 20px;">Drag and Drop</p>
         <img
         id="hadamard"
         class="dragElement"
@@ -33,10 +34,6 @@
         draggable="true"
         ondragstart="drag(event)"
       />
-
-          <p style="color:#1a6dd9; font-size: 20px;">Drag and Drop</p>
-          <p id="testing"></p>
-          <p id="draggedGate"></p>
       </div>
       
       <div class="quibit-network">
@@ -45,9 +42,8 @@
           <img id="quibitOne" class="dropZone"/>
           <img id="quibitTwo" class="dropZone"/>
           <img id="quibitThree" class="dropZone"/>
-        </div>
         <!-- Define the measure button -->
-        <div class="measure-btn">
+        <!-- <div class="measure-btn">
           <button type="button" id="measureBtn">MEASURE</button>
           <div id="measureScreen" class="popup">
             <div class="popup-content">
@@ -87,11 +83,18 @@
               </div>
             </div>
           </div>
+        </div> -->
         </div>
       </div>
+      <div class="information-panel">
+        <p id="testing"></p>
+        <p id="draggedGate"></p>
+        <p id="gate-description">Hadamard Gate creates superposition in a qubit by turning
+          into an equal mix of 0 and 1, and 1 into a similar
+          combination with a phase difference. This gives equal
+          chances of measuring 0 or 1.</p>
       </div>
-        <!-- <h2>Hadamard Gate</h2>
-        <div>
+        <!-- <div>
             <label>
                 <input type="checkbox" onchange="toggleHadamard(1, 'Hadamard', this.checked)" />
                 Qubit 1
