@@ -98,11 +98,15 @@ dropZoneSet.forEach((dropZone) => {
       if (gateSelected == "hadamard") {
         document.getElementById("quibitOne").src =
           "./assets/images/q1Hadamard.png";
+        document.getElementById("gate-description").innerHTML =
+          "Adding a Hadamard to a qubit is like arriving at a crossroads where you can go left or right. Normally, if you're following GPS, you'd take one clear path: left or right. But a Hadamard gate throws you into superposition, where you prepare to take both paths at once — left and right. It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
         document.getElementById("quibitOne").src =
           "./assets/images/q1Rotation.png";
       } else if (gateSelected == "cnot") {
         document.getElementById("quibitOne").src = "./assets/images/q1cnot.png";
+        document.getElementById("gate-description").innerHTML =
+          "The CNOT is like driving with a friend whose route depends on yours. If you go left, they stick to their plan. But if you go right, they flip their choice — left becomes right, and right becomes left. This creates entanglement, where the two of you are connected so that knowing one’s direction instantly tells you the other’s. Even if you’re far apart, your paths are always linked.";
       }
     } else if (e.target.id == "quibitTwo") {
       document.getElementById("quibitTwo").src =
@@ -111,11 +115,15 @@ dropZoneSet.forEach((dropZone) => {
       if (gateSelected == "hadamard") {
         document.getElementById("quibitTwo").src =
           "./assets/images/q2Hadamard.png";
+        document.getElementById("gate-description").innerHTML =
+          "Adding a Hadamard to a qubit is like arriving at a crossroads where you can go left or right. Normally, if you're following GPS, you'd take one clear path: left or right. But a Hadamard gate throws you into superposition, where you prepare to take both paths at once — left and right. It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
         document.getElementById("quibitTwo").src =
           "./assets/images/q2Rotation.png";
       } else if (gateSelected == "cnot") {
         document.getElementById("quibitTwo").src = "./assets/images/q2cnot.png";
+        document.getElementById("gate-description").innerHTML =
+          "The CNOT is like driving with a friend whose route depends on yours. If you go left, they stick to their plan. But if you go right, they flip their choice — left becomes right, and right becomes left. This creates entanglement, where the two of you are connected so that knowing one’s direction instantly tells you the other’s. Even if you’re far apart, your paths are always linked.";
       }
     } else if (e.target.id == "quibitThree") {
       document.getElementById("quibitThree").src =
@@ -124,12 +132,16 @@ dropZoneSet.forEach((dropZone) => {
       if (gateSelected == "hadamard") {
         document.getElementById("quibitThree").src =
           "./assets/images/q3Hadamard.png";
+        document.getElementById("gate-description").innerHTML =
+          "Adding a Hadamard to a qubit is like arriving at a crossroads where you can go left or right. Normally, if you're following GPS, you'd take one clear path: left or right. But a Hadamard gate throws you into superposition, where you prepare to take both paths at once — left and right. It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
         document.getElementById("quibitThree").src =
           "./assets/images/q3Rotation.png";
       } else if (gateSelected == "cnot") {
         document.getElementById("quibitThree").src =
           "./assets/images/q3cnot.png";
+        document.getElementById("gate-description").innerHTML =
+          "The CNOT is like driving with a friend whose route depends on yours. If you go left, they stick to their plan. But if you go right, they flip their choice — left becomes right, and right becomes left. This creates entanglement, where the two of you are connected so that knowing one’s direction instantly tells you the other’s. Even if you’re far apart, your paths are always linked.";
       }
     }
   });

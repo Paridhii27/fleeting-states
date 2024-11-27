@@ -1,9 +1,11 @@
 const express = require("express");
 const path = require("path");
 const osc = require("osc");
+const cors = require("cors");
 
 // Create an Express app
 const app = express();
+app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = 3000;
