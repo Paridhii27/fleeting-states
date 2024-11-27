@@ -63,6 +63,16 @@ dropZoneSet.forEach((dropZone) => {
     e.preventDefault();
     document.getElementById("testing").innerHTML = e.target.id;
     // dropZone.classList.add("hoverOver");
+    if (e.target.id == "quibitOne") {
+      document.getElementById("quibitOne").src =
+        "./assets/images/quibit1Hover.png";
+    } else if (e.target.id == "quibitTwo") {
+      document.getElementById("quibitTwo").src =
+        "./assets/images/quibit2Hover.png";
+    } else if (e.target.id == "quibitThree") {
+      document.getElementById("quibitThree").src =
+        "./assets/images/quibit3Hover.png";
+    }
   });
 
   dropZone.addEventListener("dragleave", () => {
