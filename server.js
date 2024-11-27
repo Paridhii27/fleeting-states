@@ -41,6 +41,7 @@ function sendOscMessage(address, args) {
 
 // Add a gate to a qubit
 app.get("/add-gate", (req, res) => {
+  console.log("gate trying to get added");
   const qubit = parseInt(req.query.qubit, 10);
   const gate = req.query.gate;
 
