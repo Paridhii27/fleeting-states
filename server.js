@@ -28,6 +28,7 @@ udpPort.open();
 
 // Serve the HTML file
 app.get("/", (req, res) => {
+  console.log("hi");
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
