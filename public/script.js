@@ -189,7 +189,7 @@ window.addEventListener("click", function (event) {
 
 // Function to handle checkbox changes
 function toggleHadamard(qubit, gate, isChecked) {
-  const url = `https://measured-values-interface.onrender.com/add-gate?qubit=${qubit}&gate=${gate}`;
+  const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
   // const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
 
   fetch(url)
