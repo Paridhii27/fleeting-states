@@ -193,15 +193,7 @@ function toggleHadamard(qubit, gate, route = "/add-gate") {
   // const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
 
   fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        return response.text().then((text) => {
-          console.error("Error Response Text:", text);
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
-        });
-      }
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
       console.log(data.message);
     })

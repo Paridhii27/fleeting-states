@@ -6,6 +6,7 @@ const cors = require("cors");
 // Create an Express app
 const app = express();
 app.use(cors());
+app.get("/health", (req, res) => res.send("Server is healthy!"));
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 3000;
@@ -18,19 +19,19 @@ const gates = {
 };
 
 // Set up OSC communication
-const udpPort = new osc.UDPPort({
-  localAddress: "0.0.0.0", // Listen on all network interfaces
-  localPort: 57121, // Local port for incoming OSC messages
-  remoteAddress: "172.20.10.6", // Send OSC messages to TouchDesigner (localhost)
-  remotePort: 57120, // Port TouchDesigner is listening on
-});
+// const udpPort = new osc.UDPPort({
+//   localAddress: "0.0.0.0", // Listen on all network interfaces
+//   localPort: 57121, // Local port for incoming OSC messages
+//   remoteAddress: "172.20.10.6", // Send OSC messages to TouchDesigner (localhost)
+//   remotePort: 57120, // Port TouchDesigner is listening on
+// });
 
-// Open the UDP port
-udpPort.open();
+// // Open the UDP port
+// udpPort.open();
 
 // Serve the HTML file
 app.get("/", (req, res) => {
-  console.log("hi");
+  console.log("Server started successfully!");
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
@@ -45,11 +46,6 @@ function sendOscMessage(address, args) {
     args,
   });
 }
-
-app.get("/", (req, res) => {
-  console.log("Server started successfully!");
-  res.send("Hello, world!");
-});
 
 // Add a gate to a qubit
 app.get(["/add-gate", "/add-gate/"], (req, res) => {
@@ -161,8 +157,6 @@ app.get("/remove-cnot", (req, res) => {
     res.status(400).json({ message: "Invalid Qubits" });
   }
 });
-
-app.get("/health", (req, res) => res.send("Server is healthy!"));
 
 // Start the server
 app.listen(PORT, () => {
