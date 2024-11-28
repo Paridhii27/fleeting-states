@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const PORT = process.env.PORT || 3000;
 
 // Gate storage for each qubit
-const gates = {
+let gates = {
   1: [],
   2: [],
   3: [],
@@ -44,27 +44,60 @@ function sendOscMessage(address, args) {
 }
 
 // Add a gate to a qubit
+// app.get("/add-gate", async (req, res) => {
+//   console.log("gate trying to get added");
+//   const qubit = parseInt(req.query.qubit, 10);
+//   const gate = req.query.gate;
+
+//   if (gates[qubit]) {
+//     if (!gates[qubit].includes(gate)) {
+//       gates[qubit].push(gate);
+
+//       // Send an OSC message for the added gate
+//       await sendOscMessage(`/qubit/${qubit}/add`, [gate, "Qubit" + qubit, 1]);
+
+//       res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
+//     } else {
+//       res
+//         .status(400)
+//         .json({ message: `Gate ${gate} already exists for Qubit ${qubit}` });
+//     }
+//   } else {
+//     res.status(400).json({ message: "Invalid Qubit" });
+//     // setTimeout(() => res.send("Done!"), 5000);
+//   }
+// });
+
 app.get("/add-gate", async (req, res) => {
-  console.log("gate trying to get added");
-  const qubit = parseInt(req.query.qubit, 10);
-  const gate = req.query.gate;
+  try {
+    console.log("Gate trying to get added");
 
-  if (gates[qubit]) {
-    if (!gates[qubit].includes(gate)) {
-      gates[qubit].push(gate);
+    const qubit = parseInt(req.query.qubit, 10);
+    const gate = req.query.gate;
 
-      // Send an OSC message for the added gate
-      await sendOscMessage(`/qubit/${qubit}/add`, [gate, "Qubit" + qubit, 1]);
-
-      res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
-    } else {
-      res
-        .status(400)
-        .json({ message: `Gate ${gate} already exists for Qubit ${qubit}` });
+    if (isNaN(qubit) || !gate) {
+      return res.status(400).json({ message: "Invalid input parameters" });
     }
-  } else {
-    res.status(400).json({ message: "Invalid Qubit" });
-    setTimeout(() => res.send("Done!"), 5000);
+
+    if (gates[qubit]) {
+      if (!gates[qubit].includes(gate)) {
+        gates[qubit].push(gate);
+
+        // Send an OSC message for the added gate
+        await sendOscMessage(`/qubit/${qubit}/add`, [gate, `Qubit${qubit}`, 1]);
+
+        res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
+      } else {
+        res
+          .status(400)
+          .json({ message: `Gate ${gate} already exists for Qubit ${qubit}` });
+      }
+    } else {
+      res.status(400).json({ message: "Invalid Qubit" });
+    }
+  } catch (error) {
+    console.error("Error adding gate:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

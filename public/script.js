@@ -3,6 +3,71 @@
 //   description: "",
 // };
 
+// dropZoneSet.forEach((dropZone) => {
+//   const gateDrag = dropZone.querySelector(".dragElement");
+//   dropZone.addEventListener("dragover", (e) => {
+//     e.preventDefault();
+//     dropZone.classList.add("hoverOver");
+//     if (gateDrag) {
+//       imageElement.src = "./assets/images/quibit2Hover.png"; // New image path
+//     }
+//     // dropZone.style.backgroundImage = "url('./assets/images/quibit2Hover.png')";
+//   });
+
+//   dropZone.addEventListener("drop", (e) => {
+//     e.preventDefault();
+//     dropZone.classList.remove("hoverOver");
+
+//     // Append the dragged item to the drop zone and ensure visibility
+//     dropZone.appendChild(dragItem);
+//     dragItem.style.position = "relative"; // Ensure proper positioning
+//     dragItem.style.zIndex = "10"; // Make it appear on top
+//   });
+// });
+
+// dragItem.addEventListener("dragstart", (e) => {
+//   // Clone the dragged element and append it to the original parent
+//   originalParent = dragItem.parentNode;
+//   originalIndex = Array.from(originalParent.children).indexOf(dragItem);
+//   let clone = dragItem.cloneNode(true);
+//   clone.classList.remove("beingDragged"); // Ensure the cloned element doesn't have the dragged class
+//   originalParent.insertBefore(clone, originalParent.children[originalIndex]);
+//   dragItem.parentNode.appendChild(clone);
+
+//   // Reattach event listeners to the clone
+//   addDragListeners(clone);
+// });
+
+// dragItem.addEventListener("drag", () => {
+//   dragItem.classList.add("beingDragged");
+// });
+
+// dragItem.addEventListener("dragend", () => {
+//   dragItem.classList.remove("beingDragged");
+// });
+
+// // When a gate is dragged and dropped on a quibit, attaching the drag element to another one of the same gate to add to another quibit.
+// dragItem.addEventListener("dragstart", (e) => {
+//   originalParent = dragItem.parentNode;
+//   originalIndex = Array.from(originalParent.children).indexOf(dragItem);
+
+//   // Optionally clone the dragged item if needed
+//   let clone = dragItem.cloneNode(true);
+//   clone.classList.remove("beingDragged");
+//   originalParent.insertBefore(clone, originalParent.children[originalIndex]);
+
+//   dragItem.style.opacity = "0.5"; // Visual feedback
+// });
+
+// dragItem.addEventListener("drag", () => {
+//   dragItem.classList.add("beingDragged");
+// });
+
+// dragItem.addEventListener("dragend", () => {
+//   dragItem.style.opacity = "1"; // Reset visual feedback
+//   dragItem.classList.remove("beingDragged");
+// });
+
 // Adding quibit images for their initial state
 document.getElementById("quibitOne").src = "./assets/images/quibit1.png";
 document.getElementById("quibitTwo").src = "./assets/images/quibit2.png";
@@ -100,8 +165,8 @@ dropZoneSet.forEach((dropZone) => {
       // First Quibit
       document.getElementById("quibitOne").src =
         "./assets/images/quibit1Hover.png";
-      toggleHadamard(1, gateSelected, "/add-gate");
       if (gateSelected == "hadamard") {
+        toggleHadamard(1, gateSelected, "/add-gate");
         document.getElementById("quibitOne").src =
           "./assets/images/q1Hadamard.png";
         document.getElementById("rotation-inst").style.display = "none";
@@ -112,6 +177,7 @@ dropZoneSet.forEach((dropZone) => {
         document.getElementById("gate-description-two").innerHTML =
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
+        toggleRotation(1, gateSelected, "/add-rotation");
         document.getElementById("quibitOne").src =
           "./assets/images/q1Rotation.png";
         document.getElementById("rotation-inst").innerHTML =
@@ -135,6 +201,7 @@ dropZoneSet.forEach((dropZone) => {
         document.getElementById("gate-description-two").innerHTML =
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
       } else if (gateSelected == "cnot") {
+        toggleCNOT(1, 2, gateSelected, "/add-cnot");
         document.getElementById("quibitOne").src = "./assets/images/q1cnot.png";
         document.getElementById("rotation-inst").style.display = "none";
         document.getElementById("rotation-img").style.display = "none";
@@ -151,8 +218,8 @@ dropZoneSet.forEach((dropZone) => {
     else if (e.target.id == "quibitTwo") {
       document.getElementById("quibitTwo").src =
         "./assets/images/quibit2Hover.png";
-      toggleHadamard(2, gateSelected, "/add-gate");
       if (gateSelected == "hadamard") {
+        toggleHadamard(2, gateSelected, "/add-gate");
         document.getElementById("quibitTwo").src =
           "./assets/images/q2Hadamard.png";
         document.getElementById("rotation-inst").style.display = "none";
@@ -164,6 +231,7 @@ dropZoneSet.forEach((dropZone) => {
         document.getElementById("gate-description-two").innerHTML =
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
+        toggleRotation(2, gateSelected, "/add-rotation");
         document.getElementById("quibitTwo").src =
           "./assets/images/q2Rotation.png";
         document.getElementById("rotation-inst").innerHTML =
@@ -176,6 +244,7 @@ dropZoneSet.forEach((dropZone) => {
         document.getElementById("gate-description-two").innerHTML =
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
       } else if (gateSelected == "cnot") {
+        toggleCNOT(2, 3, gateSelected, "/add-cnot");
         document.getElementById("quibitTwo").src = "./assets/images/q2cnot.png";
         document.getElementById("rotation-inst").style.display = "none";
         document.getElementById("rotation-img").style.display = "none";
@@ -191,8 +260,9 @@ dropZoneSet.forEach((dropZone) => {
     else if (e.target.id == "quibitThree") {
       document.getElementById("quibitThree").src =
         "./assets/images/quibit3Hover.png";
-      toggleHadamard(3, gateSelected, "/add-gate");
+
       if (gateSelected == "hadamard") {
+        toggleHadamard(3, gateSelected, "/add-rotation");
         document.getElementById("quibitThree").src =
           "./assets/images/q3Hadamard.png";
         document.getElementById("rotation-inst").style.display = "none";
@@ -204,6 +274,7 @@ dropZoneSet.forEach((dropZone) => {
         document.getElementById("gate-description-two").innerHTML =
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
+        toggleRotation(3, gateSelected, "/add-gate");
         document.getElementById("quibitThree").src =
           "./assets/images/q3Rotation.png";
         document.getElementById("rotation-inst").innerHTML =
@@ -216,6 +287,7 @@ dropZoneSet.forEach((dropZone) => {
         document.getElementById("gate-description-two").innerHTML =
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
       } else if (gateSelected == "cnot") {
+        toggleCNOT(3, 1, gateSelected, "/add-cnot");
         document.getElementById("quibitThree").src =
           "./assets/images/q3cnot.png";
         document.getElementById("rotation-inst").style.display = "none";
@@ -297,7 +369,19 @@ function toggleHadamard(qubit, gate, isChecked) {
     .catch((error) => console.error("Error:", error));
 }
 
+function toggleRotation(qubit, gate, isChecked) {
+  const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.message);
+    })
+    .catch((error) => console.error("Error:", error));
+}
+
 function toggleCNOT(qubit1, qubit2, gate, isChecked) {
+  console.log("cnot added in");
   const endpoint = isChecked ? "/add-cnot" : "/remove-cnot";
   const url = `${endpoint}?qubit1=${qubit1}&qubit2=${qubit2}&gate=${gate}`;
 
