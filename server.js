@@ -21,9 +21,9 @@ const gates = {
 const udpPort = new osc.UDPPort({
   localAddress: "0.0.0.0", // Listen on all network interfaces
   localPort: 57121, // Local port for incoming OSC messages
-  // remoteAddress: "172.20.10.6", // Send OSC messages to TouchDesigner (localhost)
-  remoteAddress: "127.0.0.1",
-  remotePort: 57123, // Port TouchDesigner is listening on
+  remoteAddress: "172.20.10.6", // Send OSC messages to TouchDesigner (localhost)
+  // remoteAddress: "127.0.0.1",
+  remotePort: 57120, // Port TouchDesigner is listening on
 });
 
 // Open the UDP port
