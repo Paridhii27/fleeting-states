@@ -201,8 +201,8 @@ window.addEventListener("click", function (event) {
 // }
 
 function toggleHadamard(qubit, gate, isChecked) {
-  // const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
-  const url = `http://localhost:3000${isChecked}?qubit=${qubit}&gate=${gate}`;
+  const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
+  // const url = `http://localhost:3000${isChecked}?qubit=${qubit}&gate=${gate}`;
   // const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
 
   fetch(url)
