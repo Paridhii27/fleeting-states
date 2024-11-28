@@ -188,12 +188,20 @@ window.addEventListener("click", function (event) {
 });
 
 // Function to handle checkbox changes
-function toggleHadamard(qubit, gate, isChecked) {
-  const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
+function toggleHadamard(qubit, gate, route = "/add-gate") {
+  const url = `https://measured-values-interface.onrender.com${route}?qubit=${qubit}&gate=${gate}`;
   // const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
 
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        return response.text().then((text) => {
+          console.error("Error Response Text:", text);
+          throw new Error(`Error ${response.status}: ${response.statusText}`);
+        });
+      }
+      return response.json();
+    })
     .then((data) => {
       console.log(data.message);
     })

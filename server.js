@@ -46,14 +46,20 @@ function sendOscMessage(address, args) {
   });
 }
 
+app.get("/", (req, res) => {
+  console.log("Server started successfully!");
+  res.send("Hello, world!");
+});
+
 // Add a gate to a qubit
-app.get("/add-gate", (req, res) => {
+app.get(["/add-gate", "/add-gate/"], (req, res) => {
   console.log("gate trying to get added");
+  console.log("Incoming request:", req.query);
   const qubit = parseInt(req.query.qubit, 10);
   const gate = req.query.gate;
 
   if (!qubit || !gate) {
-    return res.status(400).json({ message: "Qubit or gate missing" });
+    res.status(400).json({ message: "Qubit or gate missing" });
   }
 
   if (gates[qubit]) {
@@ -63,9 +69,9 @@ app.get("/add-gate", (req, res) => {
       // Send an OSC message for the added gate
       sendOscMessage(`/qubit/${qubit}/add`, [gate, "Qubit" + qubit, 1]);
 
-      return res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
+      res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
     } else {
-      return res
+      res
         .status(400)
         .json({ message: `Gate ${gate} already exists for Qubit ${qubit}` });
     }
@@ -155,6 +161,8 @@ app.get("/remove-cnot", (req, res) => {
     res.status(400).json({ message: "Invalid Qubits" });
   }
 });
+
+app.get("/health", (req, res) => res.send("Server is healthy!"));
 
 // Start the server
 app.listen(PORT, () => {
