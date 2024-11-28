@@ -2,9 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0"
+    />
     <link rel="stylesheet" href="./style.css" />
-    <title>Fleeting States 2</title>
+    <title>Fleeting States & Measured Values</title>
   </head>
   <body>
     <!-- <img src="./assets/images/title.png"> -->
@@ -15,36 +18,113 @@
     <div class="measured-values-interface">
       <div class="apply-gates-panel">
         <!-- Defining the quantum gates -->
-        <p style="color:#1a6dd9; font-size: 20px;">Long Press, Drag and Drop</p>
+        <p style="color: #1a6dd9; font-size: 15px">Long Press, Drag and Drop</p>
         <img
-        id="hadamard"
-        class="dragElement"
-        draggable="true"
-        ondragstart="drag(event)"
-      />
-      <img
-        id="rotation"
-        class="dragElement" 
-        draggable="true"
-        ondragstart="drag(event)"
-      />
-      <img
-        id="cnot"
-        class="dragElement" 
-        draggable="true"
-        ondragstart="drag(event)"
-      />
+          id="hadamard"
+          class="dragElement"
+          draggable="true"
+          ondragstart="drag(event)"
+        />
+        <img
+          id="rotation"
+          class="dragElement"
+          draggable="true"
+          ondragstart="drag(event)"
+        />
+        <img
+          id="cnot"
+          class="dragElement"
+          draggable="true"
+          ondragstart="drag(event)"
+        />
       </div>
-      
+
       <div class="quibit-network">
         <div class="quibits">
           <!-- Define the three quibits  -->
-          <img id="quibitOne" class="dropZone"/>
-          <img id="quibitTwo" class="dropZone"/>
-          <img id="quibitThree" class="dropZone"/>
-        <!-- Define the measure button -->
-        <!-- <div class="measure-btn">
-          <button type="button" id="measureBtn">MEASURE</button>
+          <img id="quibitOne" class="dropZone" />
+          <img id="quibitTwo" class="dropZone" />
+          <img id="quibitThree" class="dropZone" />
+          <div id="measure-controls">
+            <!-- Define the measure button -->
+            <button type="button" id="measureBtn">MEASURE</button>
+            <div id="measureScreen" class="popup">
+              <div class="popup-content">
+                <div class="gate-info">
+                  <div class="gate-diagram">
+                    <img src="./assets/images/hadamardPopup.png" />
+                  </div>
+                  <div class="gate-usage">
+                    <h2 class="underline">Measurement & Collapsed State</h2>
+                    <p>
+                      Measurement in quantum computing is a means of collapsing
+                      the quantum state into classical state.
+                    </p>
+                  </div>
+                </div>
+                <div class="popup-controls">
+                  <button type="button" id="closePopup">CANCEL</button>
+                  <button type="button" id="quantumRes">Next</button>
+                  <!-- <div id="resultScreen" class="popup">
+                    <div class="result-content">
+                      <div class="result-info">
+                        <div class="result-diagram">
+                          <img src="./assets/images/hadamardPopup.png" />
+                        </div>
+                        <div class="result-explanation">
+                          <h2 class="underline" style="color:#1FA113">success!</h2>
+                          <p>
+                            Hadamard Gate has successfully been applied! Q2 should now be superpositioned. If you perform a measurement cirquit on it now, it should have the value 0 in 50% of all measurements and the value 1 in the other half. 
+                          </p>
+                        </div>
+                      </div>
+                      <div class="popup-controls">
+                        <button type="button" id="closeRes" style="color:#1FA113">CANCEL</button>
+                      </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="information-panel">
+        <p id="rotation-inst"></p>
+        <!-- <button class="rotation-button">
+        </button> -->
+        <img id="rotation-img" />
+        <div class="rotation-assess">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button id="down" class="btn btn-default" onclick=" down('0')">
+                &laquo;
+              </button>
+            </div>
+            <input
+              type="text"
+              id="rotationVal"
+              class="form-control input-number"
+              value="0"
+            />
+            <div class="input-group-btn">
+              <button id="up" class="btn btn-default" onclick="up('360')">
+                &raquo;
+              </button>
+            </div>
+          </div>
+        </div>
+        <h2 id="status"></h2>
+        <p id="gate-description"></p>
+        <p id="gate-description-two"></p>
+        <p id="testing"></p>
+        <p id="draggedGate"></p>
+        <p id="errorCheck"></p>
+        <!-- ---- -->
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+<!-- <div class="measure-btn">
           <div id="measureScreen" class="popup">
             <div class="popup-content">
               <div class="gate-info">
@@ -83,17 +163,6 @@
               </div>
             </div>
           </div>
-        </div> -->
         </div>
-      </div>
-      <div class="information-panel">
-        <h2 id="status"></h2>
-        <p id="gate-description"></p>
-        <p id="testing"></p>
-        <p id="draggedGate"></p>
-        <p id="errorCheck"></p>
-      </div>
-
-    <script src="./script.js"></script>
-  </body>
-</html>
+        </div> -->
+<!-- </div> -->

@@ -43,7 +43,7 @@ function sendOscMessage(address, args) {
 }
 
 // Add a gate to a qubit
-app.get("/add-gate", (req, res) => {
+app.get("/add-gate", async (req, res) => {
   console.log("gate trying to get added");
   const qubit = parseInt(req.query.qubit, 10);
   const gate = req.query.gate;
@@ -53,14 +53,15 @@ app.get("/add-gate", (req, res) => {
       gates[qubit].push(gate);
 
       // Send an OSC message for the added gate
-      sendOscMessage(`/qubit/${qubit}/add`, [gate, "Qubit" + qubit, 1]);
+      await sendOscMessage(`/qubit/${qubit}/add`, [gate, "Qubit" + qubit, 1]);
 
       res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
-    } else {
-      res
-        .status(400)
-        .json({ message: `Gate ${gate} already exists for Qubit ${qubit}` });
     }
+    // else {
+    //   res
+    //     .status(400)
+    //     .json({ message: `Gate ${gate} already exists for Qubit ${qubit}` });
+    // }
   } else {
     res.status(400).json({ message: "Invalid Qubit" });
   }

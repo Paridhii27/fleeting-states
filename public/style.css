@@ -46,6 +46,19 @@ p {
   font-family: martian-mono;
 }
 
+/* input[type="button"] {
+  background-image: url("./assets/images/buttonBg.png");
+  background-size: cover;
+  background-position: center;
+  width: 100px; 
+  height: 30px; 
+  color: white;
+  font-size: 1rem; 
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+} */
+
 .underline {
   text-decoration: underline;
   color: #1a6dd9;
@@ -163,56 +176,79 @@ button {
   top: 60%;
 }
 
-.information-panel {
+.measure-controls {
+  position: fixed;
   display: flex;
-  z-index: 9;
-  justify-items: start;
-  width: 20%;
-  max-height: 85%;
-  margin-right: 2%;
-  padding-right: 4%;
-  /* background-color: #2a9d8f; */
   flex-direction: column;
-}
-
-/* #measureBtn {
-  z-index: 10;
-  margin-top: 55%;
+  width: auto;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 12;
   margin-left: 10%;
 }
 
-.measure-btn {
-  margin: 10% auto;
+#measureBtn {
+  position: fixed;
+  width: 120px;
+  height: auto;
+  top: 70%;
+  left: 60%;
+  justify-content: center;
+  align-items: center;
   z-index: 10;
 }
 
+#resetBtn {
+  width: 120px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+} */
+
 .popup {
   position: fixed;
-  top: 0;
-  width: 562px;
-  height: 474px;
-  overflow: auto;
-  margin: 20% auto;
+  top: 0%;
+  left: 20%;
+  width: 240px;
+  height: 420px;
+  max-width: 600px;
+  /* margin: 20% auto; */
   display: none;
-  transition: right 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  z-index: 1000;
 }
 
 .popup-content {
+  position: relative;
+  top: 100px;
+  background-color: #9aadd1;
+  padding: 15%;
+  border: 1px solid #888888;
+  width: 645px;
+  height: 420px;
+}
+
+.result-content {
+  position: relative;
+  top: 100px;
   background-color: #9aadd1;
   padding: 5%;
   border: 1px solid #888888;
   width: 680px;
   height: 420px;
-  overflow-y: auto;
-}
-
-.result-content {
-  background-color: #8fbf8a;
-  padding: 5%;
-  border: 1px solid #888888;
-  width: 680px;
-  height: 420px;
-  font-weight: bolder;
 }
 
 .popup-content button,
@@ -246,7 +282,19 @@ button {
 .gate-usage,
 .result-explanation {
   width: 50%;
-} */
+}
+
+.information-panel {
+  display: flex;
+  z-index: 9;
+  justify-items: start;
+  width: 20%;
+  max-height: 85%;
+  margin-right: 2%;
+  padding-right: 4%;
+  background-color: #f5f5f5;
+  flex-direction: column;
+}
 
 /* Dragging gates css */
 
@@ -292,7 +340,8 @@ button {
   }
 }
 
-#gate-description {
+#gate-description,
+#gate-description-two {
   font-size: 12px;
 }
 
@@ -300,4 +349,49 @@ button {
   color: #1a6dd9;
   text-decoration: underline;
   text-align: left;
+}
+
+#rotation-inst {
+  text-align: center;
+  font-size: 10px;
+}
+
+#rotation-img {
+  width: 75%;
+  align-items: center;
+  padding: 10% auto;
+}
+
+#rotation-img img {
+  margin-left: 40%;
+  align-items: center;
+}
+
+.rotation-button {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rotation-assess {
+  display: flex;
+  width: 10%;
+  margin-left: 25%;
+  align-items: center;
+  justify-self: center;
+  gap: 5px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-number {
+  width: 60px;
+  text-align: center;
+}
+
+.btn {
+  cursor: pointer;
 }
