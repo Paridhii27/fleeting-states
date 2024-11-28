@@ -21,7 +21,7 @@ const gates = {
 const udpPort = new osc.UDPPort({
   localAddress: "0.0.0.0", // Listen on all network interfaces
   localPort: 57121, // Local port for incoming OSC messages
-  remoteAddress: "127.0.0.1", // Send OSC messages to TouchDesigner (localhost)
+  remoteAddress: "172.20.10.6", // Send OSC messages to TouchDesigner (localhost)
   remotePort: 57120, // Port TouchDesigner is listening on
 });
 
@@ -32,6 +32,10 @@ udpPort.open();
 app.get("/", (req, res) => {
   console.log("hi");
   res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.use((req, res) => {
+  res.status(404).send("Not Found"); // 404 handler
 });
 
 // Utility function to send OSC messages
@@ -48,6 +52,10 @@ app.get("/add-gate", (req, res) => {
   const qubit = parseInt(req.query.qubit, 10);
   const gate = req.query.gate;
 
+  if (!qubit || !gate) {
+    return res.status(400).json({ message: "Qubit or gate missing" });
+  }
+
   if (gates[qubit]) {
     if (!gates[qubit].includes(gate)) {
       gates[qubit].push(gate);
@@ -55,9 +63,9 @@ app.get("/add-gate", (req, res) => {
       // Send an OSC message for the added gate
       sendOscMessage(`/qubit/${qubit}/add`, [gate, "Qubit" + qubit, 1]);
 
-      res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
+      return res.json({ message: `Gate ${gate} added to Qubit ${qubit}` });
     } else {
-      res
+      return res
         .status(400)
         .json({ message: `Gate ${gate} already exists for Qubit ${qubit}` });
     }
