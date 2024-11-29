@@ -181,11 +181,15 @@ dropZoneSet.forEach((dropZone) => {
           "Adding a <b>Hadamard</b> to a qubit is like arriving at a crossroads where you can go left or right. Normally, if you're following GPS, you'd take one clear path: left or right. But a Hadamard gate throws you into superposition, where you prepare to take both paths at once — left and right.";
         document.getElementById("gate-description-two").innerHTML =
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/hadamardDiagram.png";
       } else if (gateSelected == "rotation") {
         toggleRotation(1, gateSelected, "/add-rotation");
         audioFile = "./assets/sounds/q1Ry.wav";
         document.getElementById("quibitOne").src =
           "./assets/images/q1Rotation.png";
+        document.getElementById("rotation-inst").style.display = "block";
+        document.getElementById("rotation-img").style.display = "block";
         document.getElementById("rotation-inst").innerHTML =
           "Change the Rotation Angle";
         document.getElementById("rotation-img").src =
@@ -206,6 +210,8 @@ dropZoneSet.forEach((dropZone) => {
           "The Bloch sphere is like a globe showing all possible directions you can travel. The North Pole is left, and the South Pole is right. A rotation is like turning your steering wheel, letting you adjust your path to explore a mix of both directions.";
         document.getElementById("gate-description-two").innerHTML =
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/ryDiagram.png";
       } else if (gateSelected == "cnot") {
         toggleCNOT(1, 2, gateSelected, "/add-cnot");
         audioFile = "./assets/sounds/q1Cnot.wav";
@@ -218,6 +224,8 @@ dropZoneSet.forEach((dropZone) => {
           "The CNOT gate is like driving with a friend whose route depends on yours. If you go left, they stick to their plan. But if you go right, they flip their choice — left becomes right, and right becomes left.";
         document.getElementById("gate-description-two").innerHTML =
           "This creates entanglement, where the two of you are connected so that knowing one’s direction instantly tells you the other’s. Even if you’re far apart, your paths are always linked.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/cnotDiagram.png";
       }
     }
 
@@ -238,11 +246,15 @@ dropZoneSet.forEach((dropZone) => {
           "Adding a <b>Hadamard</b> to a qubit is like arriving at a crossroads where you can go left or right. Normally, if you're following GPS, you'd take one clear path: left or right. But a Hadamard gate throws you into superposition, where you prepare to take both paths at once — left and right.";
         document.getElementById("gate-description-two").innerHTML =
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/hadamardDiagram.png";
       } else if (gateSelected == "rotation") {
         toggleRotation(2, gateSelected, "/add-rotation");
         audioFile = "./assets/sounds/q2Ry.wav";
         document.getElementById("quibitTwo").src =
           "./assets/images/q2Rotation.png";
+        document.getElementById("rotation-inst").style.display = "block";
+        document.getElementById("rotation-img").style.display = "block";
         document.getElementById("rotation-inst").innerHTML =
           "Click left or right";
         document.getElementById("rotation-img").src =
@@ -252,6 +264,8 @@ dropZoneSet.forEach((dropZone) => {
           "The Bloch sphere is like a globe showing all possible directions you can travel. The North Pole is left, and the South Pole is right. A rotation is like turning your steering wheel, letting you adjust your path to explore a mix of both directions.";
         document.getElementById("gate-description-two").innerHTML =
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/ryDiagram.png";
       } else if (gateSelected == "cnot") {
         toggleCNOT(2, 3, gateSelected, "/add-cnot");
         audioFile = "./assets/sounds/q2Cnot.wav";
@@ -264,6 +278,8 @@ dropZoneSet.forEach((dropZone) => {
           "The CNOT gate is like driving with a friend whose route depends on yours. If you go left, they stick to their plan. But if you go right, they flip their choice — left becomes right, and right becomes left.";
         document.getElementById("gate-description-two").innerHTML =
           "This creates entanglement, where the two of you are connected so that knowing one’s direction instantly tells you the other’s. Even if you’re far apart, your paths are always linked.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/cnotDiagram.png";
       }
     }
     // Third Quibit
@@ -284,11 +300,15 @@ dropZoneSet.forEach((dropZone) => {
           "Adding a <b>Hadamard</b> to a qubit is like arriving at a crossroads where you can go left or right. Normally, if you're following GPS, you'd take one clear path: left or right. But a Hadamard gate throws you into superposition, where you prepare to take both paths at once — left and right.";
         document.getElementById("gate-description-two").innerHTML =
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/hadamardDiagram.png";
       } else if (gateSelected == "rotation") {
         toggleRotation(3, gateSelected, "/add-gate");
         audioFile = "./assets/sounds/q3Ry.wav";
         document.getElementById("quibitThree").src =
           "./assets/images/q3Rotation.png";
+        document.getElementById("rotation-inst").style.display = "block";
+        document.getElementById("rotation-img").style.display = "block";
         document.getElementById("rotation-inst").innerHTML =
           "Click left or right";
         document.getElementById("rotation-img").src =
@@ -298,6 +318,8 @@ dropZoneSet.forEach((dropZone) => {
           "The Bloch sphere is like a globe showing all possible directions you can travel. The North Pole is left, and the South Pole is right. A rotation is like turning your steering wheel, letting you adjust your path to explore a mix of both directions.";
         document.getElementById("gate-description-two").innerHTML =
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
+        document.getElementById("gate-added-diagram").src =
+          "./assets/images/ryDiagram.png";
       } else if (gateSelected == "cnot") {
         toggleCNOT(3, 1, gateSelected, "/add-cnot");
         audioFile = "./assets/sounds/q3Cnot.wav";
@@ -315,6 +337,7 @@ dropZoneSet.forEach((dropZone) => {
     }
     const audio = new Audio(audioFile);
     audio.play();
+    audio.volume = 0.7;
   });
 });
 
@@ -332,6 +355,17 @@ measureBtn.addEventListener("click", function () {
   const audioBtn = new Audio(audioFiles[audioIndex]);
   audioBtn.play();
   measureScreen.classList.add("show");
+  if (gateSelected == "hadamard") {
+    document.getElementById("gate-added-diagram").src =
+      "./assets/images/hadamardDiagram.png";
+    document.getElementById("operation").innerHTML = "Operation";
+  } else if (gateSelected == "rotation") {
+    document.getElementById("gate-added-diagram").src =
+      "./assets/images/ryDiagram.png";
+  } else if (gateSelected == "cnot") {
+    document.getElementById("gate-added-diagram").src =
+      "./assets/images/cnotDiagram.png";
+  }
 });
 closePopup.addEventListener("click", function () {
   measureScreen.classList.remove("show");

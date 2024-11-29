@@ -50,13 +50,15 @@
             <button type="button" id="measureBtn">MEASURE</button>
             <div id="measureScreen" class="popup">
               <div class="popup-content">
+                <hr class="new1" />
                 <div class="gate-info">
                   <div class="gate-diagram">
-                    <img src="./assets/images/hadamardPopup.png" />
+                    <img id="gate-added-diagram" />
+                    <p id="operation"></p>
                   </div>
                   <div class="gate-usage">
                     <h2 class="underline">Measurement & Collapsed State</h2>
-                    <p>
+                    <p style="font-size: 12px">
                       Measurement in quantum computing is a means of collapsing
                       the quantum state into classical state.
                     </p>
