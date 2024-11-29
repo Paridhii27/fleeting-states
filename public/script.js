@@ -273,6 +273,7 @@ dropZoneSet.forEach((dropZone) => {
 
       if (gateSelected == "hadamard") {
         toggleHadamard(3, gateSelected, "/add-rotation");
+        audioFile = "./assets/sounds/q3Hadamard.wav";
         document.getElementById("quibitThree").src =
           "./assets/images/q3Hadamard.png";
         document.getElementById("rotation-inst").style.display = "none";
@@ -285,6 +286,7 @@ dropZoneSet.forEach((dropZone) => {
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
         toggleRotation(3, gateSelected, "/add-gate");
+        audioFile = "./assets/sounds/q3Ry.wav";
         document.getElementById("quibitThree").src =
           "./assets/images/q3Rotation.png";
         document.getElementById("rotation-inst").innerHTML =
@@ -298,6 +300,7 @@ dropZoneSet.forEach((dropZone) => {
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
       } else if (gateSelected == "cnot") {
         toggleCNOT(3, 1, gateSelected, "/add-cnot");
+        audioFile = "./assets/sounds/q3Cnot.wav";
         document.getElementById("quibitThree").src =
           "./assets/images/q3cnot.png";
         document.getElementById("rotation-inst").style.display = "none";
