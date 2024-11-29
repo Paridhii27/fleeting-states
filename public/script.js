@@ -137,7 +137,7 @@ dropZoneSet.forEach((dropZone) => {
     if (e.target.id == "quibitOne") {
       document.getElementById("quibitOne").src =
         "./assets/images/quibit1Hover.png";
-      audioFile = "./assets/sounds/q1Hover.wav";
+      // audioFile = "./assets/sounds/q1Hover.wav";
     } else if (e.target.id == "quibitTwo") {
       document.getElementById("quibitTwo").src =
         "./assets/images/quibit2Hover.png";
@@ -320,6 +320,17 @@ dropZoneSet.forEach((dropZone) => {
 
 //Pressing measure button to bring up the pop ups
 measureBtn.addEventListener("click", function () {
+  const audioFiles = [
+    "./assets/sounds/measure1.wav",
+    "./assets/sounds/measure2.wav",
+    "./assets/sounds/measure3.wav",
+    "./assets/sounds/measure4.wav",
+    "./assets/sounds/measure5.wav",
+  ];
+  const audioIndex = Math.floor(Math.random() * audioFiles.length);
+  audioFile = "./assets/sounds/measure1.wav";
+  const audioBtn = new Audio(audioFiles[audioIndex]);
+  audioBtn.play();
   measureScreen.classList.add("show");
 });
 closePopup.addEventListener("click", function () {
