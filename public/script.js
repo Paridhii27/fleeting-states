@@ -84,6 +84,7 @@ var dropZoneSet = Array.from(document.querySelectorAll(".dropZone"));
 
 let originalParent, originalIndex;
 let gateSelected;
+let audioFile;
 
 function drag(event) {
   // Storing the ID of the dragged gate
@@ -136,6 +137,7 @@ dropZoneSet.forEach((dropZone) => {
     if (e.target.id == "quibitOne") {
       document.getElementById("quibitOne").src =
         "./assets/images/quibit1Hover.png";
+      audioFile = "./assets/sounds/q1Hover.wav";
     } else if (e.target.id == "quibitTwo") {
       document.getElementById("quibitTwo").src =
         "./assets/images/quibit2Hover.png";
@@ -143,6 +145,8 @@ dropZoneSet.forEach((dropZone) => {
       document.getElementById("quibitThree").src =
         "./assets/images/quibit3Hover.png";
     }
+    const hoverAudio = new Audio(audioFile);
+    hoverAudio.play();
   });
 
   dropZone.addEventListener("dragleave", () => {
@@ -167,6 +171,7 @@ dropZoneSet.forEach((dropZone) => {
         "./assets/images/quibit1Hover.png";
       if (gateSelected == "hadamard") {
         toggleHadamard(1, gateSelected, "/add-gate");
+        audioFile = "./assets/sounds/q1Hadamard.wav";
         document.getElementById("quibitOne").src =
           "./assets/images/q1Hadamard.png";
         document.getElementById("rotation-inst").style.display = "none";
@@ -178,6 +183,7 @@ dropZoneSet.forEach((dropZone) => {
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
         toggleRotation(1, gateSelected, "/add-rotation");
+        audioFile = "./assets/sounds/q1Ry.wav";
         document.getElementById("quibitOne").src =
           "./assets/images/q1Rotation.png";
         document.getElementById("rotation-inst").innerHTML =
@@ -202,6 +208,7 @@ dropZoneSet.forEach((dropZone) => {
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
       } else if (gateSelected == "cnot") {
         toggleCNOT(1, 2, gateSelected, "/add-cnot");
+        audioFile = "./assets/sounds/q1Cnot.wav";
         document.getElementById("quibitOne").src = "./assets/images/q1cnot.png";
         document.getElementById("rotation-inst").style.display = "none";
         document.getElementById("rotation-img").style.display = "none";
@@ -220,6 +227,7 @@ dropZoneSet.forEach((dropZone) => {
         "./assets/images/quibit2Hover.png";
       if (gateSelected == "hadamard") {
         toggleHadamard(2, gateSelected, "/add-gate");
+        audioFile = "./assets/sounds/q2Hadamard.wav";
         document.getElementById("quibitTwo").src =
           "./assets/images/q2Hadamard.png";
         document.getElementById("rotation-inst").style.display = "none";
@@ -232,6 +240,7 @@ dropZoneSet.forEach((dropZone) => {
           "It’s like you’re mentally planning to explore both routes to see where they lead, but you haven’t committed yet. When you eventually measure your decision (like checking your destination on the map), you'll find yourself on just one of the roads — either left or right.";
       } else if (gateSelected == "rotation") {
         toggleRotation(2, gateSelected, "/add-rotation");
+        audioFile = "./assets/sounds/q2Ry.wav";
         document.getElementById("quibitTwo").src =
           "./assets/images/q2Rotation.png";
         document.getElementById("rotation-inst").innerHTML =
@@ -245,6 +254,7 @@ dropZoneSet.forEach((dropZone) => {
           "When you “measure”, it’s like arriving at a destination — either fully left or fully right, even if your journey was a blend of both.";
       } else if (gateSelected == "cnot") {
         toggleCNOT(2, 3, gateSelected, "/add-cnot");
+        audioFile = "./assets/sounds/q2Cnot.wav";
         document.getElementById("quibitTwo").src = "./assets/images/q2cnot.png";
         document.getElementById("rotation-inst").style.display = "none";
         document.getElementById("rotation-img").style.display = "none";
@@ -300,6 +310,8 @@ dropZoneSet.forEach((dropZone) => {
           "This creates entanglement, where the two of you are connected so that knowing one’s direction instantly tells you the other’s. Even if you’re far apart, your paths are always linked.";
       }
     }
+    const audio = new Audio(audioFile);
+    audio.play();
   });
 });
 
@@ -328,19 +340,7 @@ window.addEventListener("click", function (event) {
   }
 });
 
-// Function to handle checkbox changes
-// function toggleHadamard(qubit, gate, route = "/add-gate") {
-//   const url = `https://measured-values-interface.onrender.com${route}?qubit=${qubit}&gate=${gate}`;
-//   // const url = `https://measured-values-interface.onrender.com${isChecked}?qubit=${qubit}&gate=${gate}`;
-
-//   fetch(url)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(data.message);
-//     })
-//     .catch((error) => console.error("Error:", error));
-// }
-
+// Rotation angle changes through buttons
 function up(max) {
   document.getElementById("rotationVal").value =
     parseInt(document.getElementById("rotationVal").value) + 45;
